@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa das Rosas — Museu de Poesia, Literatura e Memória</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238b2635'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='28' font-weight='700' fill='%23ffffff'%3ECR%3C/text%3E%3C/svg%3E">
+  <meta name="description"
+    content="Museu-casa dedicado à poesia e à literatura na Avenida Paulista. Conheça o casarão de 1935, o acervo de Haroldo de Campos, horários e exposições.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <style>
+    :root {
+      --bg-page: #f7f3eb;
+      --bg-surface: #ffffff;
+      --bg-muted: #ede5d8;
+      --bg-dark: #161412;
+      --text-primary: #161412;
+      --text-secondary: #4a433c;
+      --text-on-dark: #f7f3eb;
+      --brand-primary: #8b2635;
+      --brand-primary-hover: #6c1a26;
+      --brand-secondary: #244736;
+      --brand-accent: #c59b38;
+      --border-color: #d8cebe;
+      --border-strong: #161412;
+      --font-serif: "Playfair Display", Georgia, serif;
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --container-max: 1180px
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.65
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--bg-dark);
+      color: var(--text-on-dark);
+      padding: .75rem 1rem;
+      z-index: 1000
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 1.25rem
+    }
+
+    .barra-topo {
+      background: var(--bg-dark);
+      color: var(--text-on-dark);
+      font-size: .84rem;
+      padding: .55rem 0;
+      border-bottom: 1px solid #2f2a26
+    }
+
+    .barra-topo .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .5rem 1.25rem;
+      align-items: center
+    }
+
+    .cabecalho {
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100
+    }
+
+    .cabecalho-conteudo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 1rem
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      text-decoration: none;
+      color: var(--text-primary)
+    }
+
+    .marca-sigla {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--brand-primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.25rem
+    }
+
+    .marca-texto {
+      display: flex;
+      flex-direction: column
+    }
+
+    .marca-titulo {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.1
+    }
+
+    .marca-subtitulo {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: .09em
+    }
+
+    .navegacao {
+      display: none
+    }
+
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: .45rem
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: .5rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 500
+    }
+
+    .nav-link[aria-current="page"] {
+      background: var(--brand-primary);
+      color: #fff;
+      font-weight: 600
+    }
+
+    .hero {
+      padding: 3.5rem 0;
+      background: linear-gradient(180deg, #efe7da 0%, var(--bg-page) 100%);
+      border-bottom: 1px solid var(--border-color)
+    }
+
+    .hero-grade {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center
+    }
+
+    .chapeu {
+      display: inline-flex;
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--brand-primary);
+      margin-bottom: .75rem
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.15rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      margin: 0 0 1.15rem
+    }
+
+    .texto-destaque {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 62ch
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: .75rem 1.45rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid transparent
+    }
+
+    .btn-primary {
+      background: var(--brand-primary);
+      color: #fff
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border-color: var(--border-strong)
+    }
+
+    .hero-acoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem;
+      margin-top: 1.75rem
+    }
+
+    .hero-metricas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color)
+    }
+
+    .metrica-valor {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      font-weight: 700;
+      line-height: 1.1
+    }
+
+    .metrica-rotulo {
+      display: block;
+      font-size: .82rem;
+      color: var(--text-secondary);
+      margin-top: .25rem
+    }
+
+    .hero-cartao {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem
+    }
+
+    .hero-foto {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      margin-bottom: 1.25rem;
+      height: 270px;
+      position: relative
+    }
+
+    .hero-foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .controles-acessibilidade {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem
+    }
+
+    .btn-acessibilidade {
+      background: #2c2723;
+      color: #f7f3eb;
+      border: 1px solid #4d453e;
+      border-radius: 4px;
+      padding: .2rem .55rem;
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      font-weight: 600
+    }
+
+    @media(min-width:768px) {
+      .btn-menu {
+        display: none
+      }
+
+      .navegacao {
+        display: block
+      }
+
+      .hero-grade {
+        grid-template-columns: 1.15fr .85fr
+      }
+    }
+  </style>
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="styles.css">
+  </noscript>
+</head>
+
+<body>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- [JS] Barra superior com controles de fonte e contraste -->
+  <div class="barra-topo" role="region" aria-label="Informações rápidas e acessibilidade">
+    <div class="container">
+      <span class="status-visita">
+        <span class="status-indicador" aria-hidden="true"></span>
+        Entrada gratuita • Av. Paulista, 37 (Metrô Brigadeiro)
+      </span>
+      <div class="controles-acessibilidade" role="group" aria-label="Controles de acessibilidade">
+        <button type="button" id="fonte-diminuir" class="btn-acessibilidade"
+          aria-label="A- Diminuir tamanho da fonte">A-</button>
+        <button type="button" id="fonte-aumentar" class="btn-acessibilidade"
+          aria-label="A+ Aumentar tamanho da fonte">A+</button>
+        <button type="button" id="alto-contraste" class="btn-acessibilidade" aria-pressed="false">Contraste</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="cabecalho">
+    <div class="container cabecalho-conteudo">
+      <a href="index.html" class="marca">
+        <span class="marca-sigla" aria-hidden="true">CR</span>
+        <span class="marca-texto">
+          <span class="marca-titulo">Casa das Rosas</span>
+          <span class="marca-subtitulo">Espaço Haroldo de Campos</span>
+        </span>
+      </a>
+
+      <!-- [JS] Botão que abre menu no celular -->
+      <button type="button" class="btn-menu" aria-expanded="false" aria-controls="navegacao-principal">
+        Menu
+      </button>
+
+      <nav id="navegacao-principal" class="navegacao" aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link" aria-current="page">O Museu</a></li>
+          <li><a href="exposicoes.html" class="nav-link">Exposições</a></li>
+          <li><a href="cadastro.html" class="nav-link">Receba Novidades</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo-principal">
+    <section class="hero">
+      <div class="container hero-grade">
+        <div>
+          <span class="chapeu">Museu-Casa • Avenida Paulista</span>
+          <h1>Onde a <em>poesia concreta</em> encontra um casarão de 1935</h1>
+          <p class="texto-destaque">
+            Dedicada à poesia, à literatura e à memória cultural, a Casa das Rosas preserva o acervo de Haroldo de
+            Campos e abre seus jardins gratuitamente no coração de São Paulo.
+          </p>
+          <div class="hero-acoes">
+            <a href="exposicoes.html" class="btn btn-primary">Explorar Exposições</a>
+            <a href="cadastro.html" class="btn btn-secondary">Cadastrar para Novidades</a>
+          </div>
+
+          <div class="hero-metricas" aria-label="Destaques do museu">
+            <div>
+              <span class="metrica-valor">1935</span>
+              <span class="metrica-rotulo">Casarão eclético na Paulista</span>
+            </div>
+            <div>
+              <span class="metrica-valor">300m</span>
+              <span class="metrica-rotulo">Do Metrô Brigadeiro (5 min)</span>
+            </div>
+            <div>
+              <span class="metrica-valor">7h–22h</span>
+              <span class="metrica-rotulo">Jardim aberto todos os dias</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-cartao" aria-label="Guia rápido de visitação">
+          <div class="hero-foto">
+            <img src="assets/images/oficial/cr-home.webp"
+              alt="Fachada da Casa das Rosas na Avenida Paulista — imagem oficial do museu" width="480" height="270"
+              fetchpriority="high">
+            <span class="credito-foto">Acervo Casa das Rosas • casadasrosas.org.br</span>
+          </div>
+
+          <div class="lista-horarios">
+            <div class="item-horario">
+              <strong>Museu</strong>
+              <span>Ter a Dom, das 10h às 17h30</span>
+            </div>
+            <div class="item-horario">
+              <strong>Jardim &amp; Roseiral</strong>
+              <span>Todos os dias, 7h às 22h (livre)</span>
+            </div>
+            <div class="item-horario">
+              <strong>Caffè Ristoro (Edícula)</strong>
+              <span>Seg 11h–17h30 • Ter–Dom 10h30–18h</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="secao">
+      <div class="container">
+        <span class="chapeu">Experiência do Visitante</span>
+        <h2>Um espaço vivo para leitura, pesquisa e encontro</h2>
+        <p class="texto-destaque">
+          Pensado para quem caminha pela Paulista e consulta pelo celular, para estudantes de todo o país e para quem
+          descobre a poesia pela primeira vez.
+        </p>
+
+        <div class="grid-3 grade-espacada">
+          <article class="card">
+            <span class="etiqueta">Arquitetura &amp; Restauro</span>
+            <h3>O Casarão de 1935 (30 Cômodos)</h3>
+            <p>
+              Construído entre 1927 e 1935 pelo Escritório Ramos de Azevedo (Severo &amp; Villares) em estilo eclético
+              com influência da Renascença francesa, possui 4 pavimentos, duas varandas, pisos marchetados e ladrilhos
+              hidráulicos.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="etiqueta">Área Externa &amp; Café</span>
+            <h3>Jardim com Roseiral &amp; Edícula</h3>
+            <p>
+              Aberto diariamente das 7h às 22h com acesso livre, o jardim convive com o Caffè Ristoro na edícula. Pets
+              são bem-vindos nas áreas externas (com coleira), tornando o espaço um refúgio na Paulista.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="etiqueta">Acessibilidade Física &amp; Digital</span>
+            <h3>Restauro 2021–2023 (NBR 9050)</h3>
+            <p>
+              O museu conta com rampa de acesso, elevador para todos os pavimentos, piso podotátil, corrimãos duplos em
+              Braille, banheiro acessível e site com controles de fonte e alto contraste.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-alternativa" aria-labelledby="titulo-vitrine-home">
+      <div class="container">
+        <div class="cabecalho-secao">
+          <div>
+            <span class="chapeu">Vitrine Digital</span>
+            <h2 id="titulo-vitrine-home">Obras e Acervo em Destaque</h2>
+            <p class="texto-destaque mb-0">Uma amostra visual do que está em cartaz e do acervo preservado pela Casa das
+              Rosas.</p>
+          </div>
+          <a href="exposicoes.html" class="btn btn-primary">Ver Vitrine Completa →</a>
+        </div>
+
+        <!-- [JS] Preenchido eplo script.js #tpl-obra-home com dados de dados.js -->
+        <div id="vitrine-home-grade" class="grid-3"></div>
+
+        <template id="tpl-obra-home">
+          <article class="card card-obra">
+            <div class="obra-moldura">
+              <img data-campo="imagem" src="" alt="" width="360" height="220" loading="lazy">
+              <span class="credito-foto" data-campo="credito"></span>
+            </div>
+            <span class="etiqueta" data-campo="categoriaLabel"></span>
+            <h3 data-campo="titulo"></h3>
+            <p data-campo="resumo"></p>
+          </article>
+        </template>
+      </div>
+    </section>
+
+    <section class="secao secao-escura" aria-labelledby="titulo-linha-tempo">
+      <div class="container">
+        <span class="chapeu">Diferencial Histórico</span>
+        <h2 id="titulo-linha-tempo">Linha do Tempo: do Casarão à <em>Poesia Viva</em></h2>
+        <p class="texto-destaque">
+          Selecione um marco cronológico abaixo para percorrer a história da arquitetura paulista, da poesia concreta e
+          da formação do acervo.
+        </p>
+
+        <!-- [JS] Abas linha do tempo -->
+        <div class="linha-tempo-abas" role="tablist" aria-label="Marcos históricos da Casa das Rosas">
+          <button type="button" class="linha-tempo-aba is-active" role="tab" aria-selected="true" data-epoca="1935">1935
+            • O Casarão</button>
+          <button type="button" class="linha-tempo-aba" role="tab" aria-selected="false" data-epoca="1950">Anos 1950 •
+            Concretismo</button>
+          <button type="button" class="linha-tempo-aba" role="tab" aria-selected="false" data-epoca="1991">1991 •
+            Abertura</button>
+          <button type="button" class="linha-tempo-aba" role="tab" aria-selected="false" data-epoca="2004">2004 •
+            Acervo</button>
+          <button type="button" class="linha-tempo-aba" role="tab" aria-selected="false" data-epoca="hoje">Hoje •
+            Vitrine Digital</button>
+        </div>
+
+        <div class="linha-tempo-palco">
+          <div data-painel-epoca="1935">
+            <div class="linha-tempo-ano">1927–1935</div>
+            <h3>Construção do Casarão na Avenida Paulista</h3>
+            <p>
+              Projetado pelo Escritório Técnico Ramos de Azevedo (acompanhamento de Felisberto Ranzini, já como Severo
+              &amp; Villares) para Ernesto Dias de Castro e Lúcia Lacaze Ramos de Azevedo, o casarão foi habitado pela
+              família por 51 anos, até 1986.
+            </p>
+            <blockquote class="linha-tempo-citacao">
+              “Um dos poucos remanescentes da fase residencial da Paulista, testemunha das transformações urbanas da
+              cidade.”
+            </blockquote>
+          </div>
+
+          <div class="is-hidden" data-painel-epoca="1950">
+            <div class="linha-tempo-ano">1952–1956</div>
+            <h3>Eclosão da Poesia Concreta em São Paulo</h3>
+            <p>
+              Haroldo de Campos, Augusto de Campos e Décio Pignatari fundam o movimento concretista com a revista
+              Noigandres, integrando palavra, som, tipografia e espaço visual.
+            </p>
+            <blockquote class="linha-tempo-citacao">
+              “O poema concreto comunica a sua própria estrutura: o branco da página também fala.”
+            </blockquote>
+          </div>
+
+          <div class="is-hidden" data-painel-epoca="1991">
+            <div class="linha-tempo-ano">1991</div>
+            <h3>Restauro e Abertura como Casa das Rosas</h3>
+            <p>
+              Após processo de tombamento e restauração, o imóvel passa a funcionar como espaço cultural público,
+              acolhendo saraus noturnos, oficinas de escrita e lançamentos literários.
+            </p>
+            <blockquote class="linha-tempo-citacao">
+              “O jardim de roseiras se torna ponto de encontro gratuito para leitores de todas as idades.”
+            </blockquote>
+          </div>
+
+          <div class="is-hidden" data-painel-epoca="2004">
+            <div class="linha-tempo-ano">2004</div>
+            <h3>Espaço Haroldo de Campos de Poesia e Literatura</h3>
+            <p>
+              O museu passa a abrigar a biblioteca particular e documentos de trabalho de Haroldo de Campos,
+              consolidando-se como referência para pesquisadores e estudantes.
+            </p>
+            <blockquote class="linha-tempo-citacao">
+              “Livros anotados à mão, correspondências internacionais e edições raras reunidos sob o mesmo teto.”
+            </blockquote>
+          </div>
+
+          <div class="is-hidden" data-painel-epoca="hoje">
+            <div class="linha-tempo-ano">2021–Hoje</div>
+            <h3>Restauro, Acessibilidade &amp; Vitrine Digital</h3>
+            <p>
+              Revitalizada entre 2021 e 2023 com acessibilidade arquitetônica completa, a Casa das Rosas une exposições
+              contemporâneas, oficinas, bolsas de pesquisa Haroldo de Campos e difusão digital.
+            </p>
+            <blockquote class="linha-tempo-citacao">
+              “A memoria do casarão, de seus antigos moradores e trabalhadores e da poesia ganha vida no celular.”
+            </blockquote>
+          </div>
+
+          <div class="linha-tempo-apoio">
+            <div class="linha-tempo-apoio-foto">
+              <img src="assets/images/oficial/cr-casarao-1940.webp"
+                alt="Fotografia histórica do casarão da Casa das Rosas por volta de 1940" width="360" height="170"
+                loading="lazy">
+            </div>
+            <span class="chapeu">Registro Histórico (c. 1940)</span>
+            <h3>Veja os marcos aplicados às obras</h3>
+            <p class="texto-claro-suave">
+              Na página de exposições, você pode filtrar as peças por eixo, abrir a ficha curatorial com áudio e
+              conferir a mostra atual.
+            </p>
+            <a href="exposicoes.html" class="btn btn-primary">Abrir Vitrine de Obras</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao">
+      <div class="container grid-2">
+        <div class="card">
+          <span class="etiqueta">Planeje sua Visita</span>
+          <h3>Como chegar e orientações práticas</h3>
+          <p>
+            <strong>Metrô e Carro:</strong> A 300m da Estação <strong>Brigadeiro</strong> (Linha 2–Verde, 5 min a pé).
+            Convênio de estacionamento na Alameda Santos, 74 (fechado dom. e feriados).
+          </p>
+          <p class="mb-0">
+            <strong>Grupos e Mochilas:</strong> Escolas e grupos (até 40 pessoas) agendam por
+            <code>agendamento@poiesis.org.br</code>. Mochilas até 39x21 cm (não há guarda-volumes).
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="etiqueta">Fique Conectado</span>
+          <h3>Quer saber das próximas exposições?</h3>
+          <p>
+            Cadastre seu nome e e-mail em nosso formulário simples com consentimento LGPD para receber avisos de novas
+            mostras, saraus e aberturas de inscrição.
+          </p>
+          <div class="card-rodape">
+            <a href="cadastro.html" class="btn btn-primary">Ir para o Cadastro</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+    </div>
+  </footer>
+
+  <script src="dados.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+
+</html>
