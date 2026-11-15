@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receba Novidades — Cadastro de Visitantes | Casa das Rosas</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238b2635'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='28' font-weight='700' fill='%23ffffff'%3ECR%3C/text%3E%3C/svg%3E">
+  <meta name="description"
+    content="Cadastre seu nome e e-mail para receber notícias sobre as próximas exposições e atividades gratuitas da Casa das Rosas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <style>
+    :root {
+      --bg-page: #f7f3eb;
+      --bg-surface: #ffffff;
+      --bg-muted: #ede5d8;
+      --bg-dark: #161412;
+      --text-primary: #161412;
+      --text-secondary: #4a433c;
+      --text-on-dark: #f7f3eb;
+      --brand-primary: #8b2635;
+      --brand-primary-hover: #6c1a26;
+      --brand-secondary: #244736;
+      --brand-accent: #c59b38;
+      --border-color: #d8cebe;
+      --border-strong: #161412;
+      --font-serif: "Playfair Display", Georgia, serif;
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --container-max: 1180px
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.65
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--bg-dark);
+      color: var(--text-on-dark);
+      padding: .75rem 1rem;
+      z-index: 1000
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 1.25rem
+    }
+
+    .barra-topo {
+      background: var(--bg-dark);
+      color: var(--text-on-dark);
+      font-size: .84rem;
+      padding: .55rem 0;
+      border-bottom: 1px solid #2f2a26
+    }
+
+    .barra-topo .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .5rem 1.25rem;
+      align-items: center
+    }
+
+    .cabecalho {
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100
+    }
+
+    .cabecalho-conteudo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 1rem
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      text-decoration: none;
+      color: var(--text-primary)
+    }
+
+    .marca-sigla {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--brand-primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.25rem
+    }
+
+    .marca-texto {
+      display: flex;
+      flex-direction: column
+    }
+
+    .marca-titulo {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.1
+    }
+
+    .marca-subtitulo {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: .09em
+    }
+
+    .navegacao {
+      display: none
+    }
+
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: .45rem
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: .5rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 500
+    }
+
+    .nav-link[aria-current="page"] {
+      background: var(--brand-primary);
+      color: #fff;
+      font-weight: 600
+    }
+
+    .hero {
+      padding: 3.5rem 0;
+      background: linear-gradient(180deg, #efe7da 0%, var(--bg-page) 100%);
+      border-bottom: 1px solid var(--border-color)
+    }
+
+    .chapeu {
+      display: inline-flex;
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--brand-primary);
+      margin-bottom: .75rem
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.15rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      margin: 0 0 1.15rem
+    }
+
+    .texto-destaque {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 62ch
+    }
+
+    .controles-acessibilidade {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem
+    }
+
+    .btn-acessibilidade {
+      background: #2c2723;
+      color: #f7f3eb;
+      border: 1px solid #4d453e;
+      border-radius: 4px;
+      padding: .2rem .55rem;
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      font-weight: 600
+    }
+
+    @media(min-width:768px) {
+      .btn-menu {
+        display: none
+      }
+
+      .navegacao {
+        display: block
+      }
+    }
+  </style>
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="styles.css">
+  </noscript>
+</head>
+
+<body>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- [JS] Barra superior com controles de fonte e contraste -->
+  <div class="barra-topo" role="region" aria-label="Informações rápidas e acessibilidade">
+    <div class="container">
+      <span class="status-visita">
+        <span class="status-indicador" aria-hidden="true"></span>
+        Entrada gratuita • Av. Paulista, 37 (Metrô Brigadeiro)
+      </span>
+      <div class="controles-acessibilidade" role="group" aria-label="Controles de acessibilidade">
+        <button type="button" id="fonte-diminuir" class="btn-acessibilidade"
+          aria-label="A- Diminuir tamanho da fonte">A-</button>
+        <button type="button" id="fonte-aumentar" class="btn-acessibilidade"
+          aria-label="A+ Aumentar tamanho da fonte">A+</button>
+        <button type="button" id="alto-contraste" class="btn-acessibilidade" aria-pressed="false">Contraste</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="cabecalho">
+    <div class="container cabecalho-conteudo">
+      <a href="index.html" class="marca">
+        <span class="marca-sigla" aria-hidden="true">CR</span>
+        <span class="marca-texto">
+          <span class="marca-titulo">Casa das Rosas</span>
+          <span class="marca-subtitulo">Espaço Haroldo de Campos</span>
+        </span>
+      </a>
+
+      <!-- [JS] Botão que abre/fecha o menu no celular -->
+      <button type="button" class="btn-menu" aria-expanded="false" aria-controls="navegacao-principal">
+        Menu
+      </button>
+
+      <nav id="navegacao-principal" class="navegacao" aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">O Museu</a></li>
+          <li><a href="exposicoes.html" class="nav-link">Exposições</a></li>
+          <li><a href="cadastro.html" class="nav-link" aria-current="page">Receba Novidades</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo-principal">
+    <section class="hero">
+      <div class="container">
+        <span class="chapeu">Informativo Cultural • Newsletter</span>
+        <h1>Receba notícias sobre <em>futuras exposições</em></h1>
+        <p class="texto-destaque">
+          Acompanhe em primeira mão a abertura de novas mostras, saraus no Jardim Paradiso e conteúdos digitalizados do
+          acervo Haroldo de Campos.
+        </p>
+      </div>
+    </section>
+
+    <section class="secao">
+      <div class="container cadastro-grade">
+        <aside class="cadastro-lateral" aria-label="Vantagens do cadastro">
+          <span class="chapeu">Por que se cadastrar?</span>
+          <h2>Poesia e programação direto no seu e-mail</h2>
+          <p class="texto-claro-suave">
+            Ideal para estudantes, pesquisadores, professores e visitantes que querem saber antes quando uma exposição
+            inaugura ou quando abrem novas vagas.
+          </p>
+          <ul class="lista-beneficios">
+            <li>Avisos antecipados de novas exposições e mostras temporárias.</li>
+            <li>Convites para saraus gratuitos e leituras no Jardim Paradiso.</li>
+            <li>Novidades sobre obras digitalizadas e roteiros para escolas.</li>
+            <li>Transparência total e respeito à LGPD, sem spam.</li>
+          </ul>
+        </aside>
+
+        <div class="cartao-formulario">
+          <h2>Cadastro de Visitantes</h2>
+          <p class="formulario-intro">
+            Preencha seus dados abaixo. O formulário utiliza a tag semântica <code>&lt;form&gt;</code> pronta para envio
+            dos dados cadastrados.
+          </p>
+
+          <!-- [JS] Formulário capturado por script.js via id="formulario-visitante" -->
+          <form id="formulario-visitante" action="#" method="post">
+            <div class="campo-grupo">
+              <label for="nome-visitante" class="campo-rotulo">Nome completo</label>
+              <input type="text" id="nome-visitante" name="nome" class="campo-entrada"
+                placeholder="Ex.: Maria Clara Souza" required autocomplete="name">
+            </div>
+
+            <div class="campo-grupo">
+              <label for="email-visitante" class="campo-rotulo">E-mail</label>
+              <input type="email" id="email-visitante" name="email" class="campo-entrada"
+                placeholder="Ex.: mariaclara@email.com" required autocomplete="email">
+            </div>
+
+            <div class="grupo-checkbox">
+              <input type="checkbox" id="aceita-notificacoes" name="aceita_notificacoes" value="sim" required>
+              <label for="aceita-notificacoes">
+                Aceito receber notificações por e-mail sobre futuras exposições e programação da Casa das Rosas,
+                concordando com o tratamento dos meus dados conforme a LGPD.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-largura-total">
+              Cadastrar para receber novidades
+            </button>
+          </form>
+
+          <!-- [JS] Área de confirmação preenchida e exibida após o envio -->
+          <div id="retorno-formulario" class="retorno-formulario is-hidden" role="status" aria-live="polite"
+            tabindex="-1"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape-grade">
+        <div>
+          <h2>Casa das Rosas</h2>
+          <p>Espaço Haroldo de Campos de Poesia e Literatura. Museu-casa dedicado à memória literária e à fruição
+            cultural gratuita na Avenida Paulista.</p>
+        </div>
+        <div>
+          <h3>Visitação e Contato</h3>
+          <p>Av. Paulista, 37 — Bela Vista, São Paulo/SP<br>CEP 01311-902 • Metrô Brigadeiro</p>
+          <p>Tel.: +55 (11) 3285-6986<br>E-mail: <a
+              href="mailto:contato@casadasrosas.org.br">contato@casadasrosas.org.br</a></p>
+        </div>
+        <div>
+          <h3>Navegação</h3>
+          <ul class="rodape-links">
+            <li><a href="index.html">O Museu e Linha do Tempo</a></li>
+            <li><a href="exposicoes.html">Exposições e Obras</a></li>
+            <li><a href="cadastro.html">Cadastro de Visitantes</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="rodape-base">
+        <span>Projeto Integrador — Museu Casa das Rosas</span>
+        <span>Felipe Sanches, Oliver Kayano, Wesley Ricardo dos Santos</span>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>

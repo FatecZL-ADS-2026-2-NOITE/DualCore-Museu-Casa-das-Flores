@@ -49,7 +49,8 @@ pagina `exposicoes.html`:
 - Campo `#busca-exposicoes`, botoes `[data-filtro]` e texto `#contagem-obras`
 - Cards clicaveis (`.card-clicavel` com `.card-acao-link`) e gatilhos `[data-abrir-obra]` abrem o `<dialog id="modal-curatorial">` e preenchem `#modal-etiqueta`, `#modal-titulo`, `#modal-imagem`, `#modal-descricao`, `#modal-som` e `#modal-direitos` (`#btn-audioguia` toca a narracao via `speechSynthesis` com status no `#audioguia-status`; `#modal-fechar` fecha e para o audio)
 
-
+pagina `cadastro.html`:
+- Formulario `#formulario-visitante` com `#nome-visitante`, `#email-visitante`, `#aceita-notificacoes` e div `#retorno-formulario`
 
 ## Css 
 
