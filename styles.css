@@ -1,0 +1,262 @@
+/* 0. TOKENS COMPLEMENTARES E RESET ---------------------------------------
+   Os tokens principais (--brand-*, --bg-*, --text-*) vêm do <style> inline.
+   Aqui entram só os que os componentes abaixo precisam.                    */
+:root {
+  --on-brand: #ffffff;
+  --on-dark-soft: #d8cebe;       /* texto secundário sobre fundo escuro (≈11:1) */
+  --on-dark-muted: #a89c8c;      /* texto terciário sobre fundo escuro (≈7:1)   */
+  --panel-dark: #221e1a;         /* cartões sobre seção escura                  */
+  --line-dark: #3a332d;
+  --field-border: #8a7d6c;       /* borda de campo: ≥3:1 sobre branco (WCAG 1.4.11) */
+  --focus: #161412;
+  --focus-on-dark: #c59b38;
+  --tint-brand: #f4e6e8;         /* fundo suave das etiquetas                   */
+  --ok-bg: #e6f1ea;
+  --ok-text: #17352a;
+  --shadow-sm: 0 1px 2px rgba(22, 20, 18, .06), 0 1px 1px rgba(22, 20, 18, .04);
+  --shadow-md: 0 10px 28px -10px rgba(22, 20, 18, .28);
+  --ease: cubic-bezier(.2, .6, .2, 1);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto; 
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* 1. BASE E TIPOGRAFIA ---------------------------------------------------- */
+html {
+   scroll-padding-top: 6.5rem; 
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+}
+
+::selection {
+  background: var(--brand-primary);
+  color: #fff;
+}
+
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  line-height: 1.2;
+  color: inherit;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  margin: 0 0 .85rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin: 0 0 .6rem;
+}
+
+h1 em,
+h2 em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--brand-primary);
+}
+
+p {
+  margin: 0 0 1rem;
+  text-wrap: pretty;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--brand-primary);
+  text-underline-offset: .2em;
+}
+
+a:hover {
+  color: var(--brand-primary-hover);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: .86em;
+  background: var(--bg-muted);
+  padding: .12em .45em;
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
+blockquote {
+  margin: 0;
+}
+
+.texto-secundario {
+  color: var(--text-secondary);
+}
+
+
+.chapeu {
+  max-width: 100%;
+}
+
+
+/* 2. UTILITÁRIOS E ESTADOS ------------------------------------------------ */
+.is-hidden,
+[hidden] {
+  display: none !important;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid var(--focus-on-dark);
+}
+
+
+/* 3. ACESSIBILIDADE ------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.secao-escura :focus-visible,
+.barra-topo :focus-visible,
+.rodape :focus-visible,
+.modal-curatorial :focus-visible {
+  outline-color: var(--focus-on-dark);
+}
+
+.modal-curatorial :focus-visible {
+  outline-color: var(--focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+[data-contrast="high"] {
+  --bg-page: #000;
+  --bg-surface: #000;
+  --bg-muted: #111;
+  --bg-dark: #000;
+  --text-primary: #fff;
+  --text-secondary: #fff;
+  --text-on-dark: #fff;
+  --brand-primary: #ffd84d;
+  --brand-primary-hover: #fff;
+  --brand-secondary: #000;
+  --brand-accent: #ffd84d;
+  --border-color: #fff;
+  --border-strong: #fff;
+  --on-brand: #000;
+  --on-dark-soft: #fff;
+  --on-dark-muted: #fff;
+  --panel-dark: #000;
+  --line-dark: #fff;
+  --field-border: #fff;
+  --focus: #ffd84d;
+  --focus-on-dark: #ffd84d;
+  --tint-brand: #000;
+  --ok-bg: #000;
+  --ok-text: #fff;
+}
+
+[data-contrast="high"] .cabecalho,
+[data-contrast="high"] .hero {
+  background: #000;
+}
+
+[data-contrast="high"] .btn-primary,
+[data-contrast="high"] .nav-link[aria-current="page"],
+[data-contrast="high"] .marca-sigla {
+  color: #000;
+}
+
+[data-contrast="high"] .btn-primary:hover {
+  background: #fff;
+  color: #000;
+}
+
+[data-contrast="high"] .btn-secondary:hover {
+  background: #ffd84d;
+  color: #000;
+}
+
+[data-contrast="high"] a:not(.btn):not(.marca):not(.nav-link) {
+  text-decoration: underline;
+}
+
+[data-contrast="high"] .card,
+[data-contrast="high"] .cartao-formulario,
+[data-contrast="high"] .cadastro-lateral,
+[data-contrast="high"] .destaque-vitrine,
+[data-contrast="high"] .linha-tempo-apoio,
+[data-contrast="high"] .hero-cartao {
+  border: 2px solid #fff;
+}
+
+[data-contrast="high"] .etiqueta {
+  border: 1px solid #ffd84d;
+  color: #ffd84d;
+}
+
+[data-contrast="high"] .btn-filtro.is-active,
+[data-contrast="high"] .linha-tempo-aba.is-active,
+[data-contrast="high"] .btn-acessibilidade[aria-pressed="true"] {
+  background: #ffd84d;
+  color: #000;
+  border-color: #ffd84d;
+}
+
+[data-contrast="high"] .mapa-zona-area {
+  stroke: #ffd84d;
+  stroke-width: 2.5;
+}
+
+[data-contrast="high"] .mapa-zona.is-active .mapa-zona-area {
+  stroke: #fff;
+  stroke-width: 4;
+}
+
+[data-contrast="high"] .credito-foto {
+  background: #000;
+  border-top: 1px solid #fff;
+}
