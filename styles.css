@@ -25,7 +25,7 @@ svg {
 }
 
 img {
-  height: auto; 
+  height: auto;
 }
 
 button,
@@ -41,7 +41,7 @@ button {
 
 /* 1. BASE E TIPOGRAFIA ---------------------------------------------------- */
 html {
-   scroll-padding-top: 6.5rem; 
+  scroll-padding-top: 6.5rem;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -747,7 +747,8 @@ blockquote {
 }
 
 .campo-busca {
-  flex: 1 1 18rem;
+  flex: 1 1 min(18rem, 100%);
+  min-width: 0;
   min-height: 48px;
   padding: .7rem 1.2rem;
   border: 1.5px solid var(--field-border);
@@ -811,6 +812,7 @@ blockquote {
 /* Destaque no topo de exposicoes.html */
 .destaque-vitrine {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem 2.5rem;
   align-items: center;
   margin-bottom: 3.5rem;
@@ -862,6 +864,7 @@ blockquote {
 /* 9. HERO: LISTA DE HORÁRIOS ---------------------------------------------- */
 .lista-horarios {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .item-horario {
@@ -886,6 +889,7 @@ blockquote {
 /* 10. MAPA INTERATIVO ----------------------------------------------------- */
 .mapa-grade {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
   align-items: start;
   margin-top: 2rem;
@@ -933,6 +937,7 @@ blockquote {
 
 .mapa-botoes {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: .6rem;
   margin-top: 1rem;
 }
@@ -991,39 +996,28 @@ blockquote {
 /* 11. LINHA DO TEMPO ------------------------------------------------------ */
 .linha-tempo-abas {
   display: flex;
+  flex-wrap: wrap;
   gap: .6rem;
   margin: 2rem 0 1.75rem;
-  padding-bottom: .5rem;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: #5a5047 transparent;
 }
 
 .linha-tempo-aba {
-  flex: none;
+  max-width: 100%;
   min-height: 44px;
   padding: .5rem 1.15rem;
   border: 1.5px solid #5a5047;
   border-radius: 999px;
   font-size: .92rem;
   font-weight: 500;
-  white-space: nowrap;
-  scroll-snap-align: start;
+  line-height: 1.25;
   transition: background-color .2s var(--ease), color .2s var(--ease),
     border-color .2s var(--ease);
 }
 
-@media (min-width: 1024px) {
-  .linha-tempo-abas {
-    flex-wrap: wrap;
-    overflow: visible;
-  }
-}
 
 .linha-tempo-palco {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2.5rem;
   align-items: start;
 }
@@ -1163,6 +1157,7 @@ body:has(dialog[open]) {
 
 .modal-body {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.25rem;
   padding: 1.5rem;
   overflow-y: auto;
@@ -1233,6 +1228,7 @@ body:has(dialog[open]) {
 /* 13. CADASTRO (FORMULÁRIO) ----------------------------------------------- */
 .cadastro-grade {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
   align-items: start;
 }
@@ -1254,6 +1250,7 @@ body:has(dialog[open]) {
 
 .cadastro-lateral .chapeu {
   color: #e5c890;
+}
 
 .cadastro-lateral h2 {
   font-size: clamp(1.5rem, 3vw, 2rem);
@@ -1332,6 +1329,7 @@ body:has(dialog[open]) {
 
 .campo-entrada {
   width: 100%;
+  min-width: 0;
   min-height: 48px;
   padding: .7rem 1rem;
   border: 1.5px solid var(--field-border);
@@ -1389,6 +1387,7 @@ body:has(dialog[open]) {
 
 .retorno-formulario {
   margin-top: 1.25rem;
+  overflow-wrap: anywhere;
   padding: 1rem 1.25rem;
   background: var(--ok-bg);
   color: var(--ok-text);
@@ -1417,6 +1416,7 @@ body:has(dialog[open]) {
 
 .rodape-grade {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
 }
 
@@ -1489,7 +1489,181 @@ body:has(dialog[open]) {
 }
 
 
-/* 15. IMPRESSÃO ----------------------------------------------------------- */
+/* 15. AJUSTES POR LARGURA (abaixo da dobra) --------------------------------
+   Complementam as media queries do CSS crítico (cabeçalho e hero), que ficam
+   inline em cada página. */
+
+/* Celulares compactos: até 400px */
+@media (max-width: 400px) {
+  .secao {
+    padding: 2.75rem 0;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 7vw, 1.7rem);
+  }
+
+  .cabecalho-secao {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* botões de ação ocupam a linha toda: alvo de toque maior e sem sobras */
+  .cabecalho-secao > .btn,
+  .chamada-banner > .btn,
+  .barra-busca .btn-ghost {
+    width: 100%;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  /* .card-obra vem depois de .card para manter a imagem sangrando na borda */
+  .card-obra {
+    padding: 0 0 1rem;
+  }
+
+  .card-obra>*:not(.obra-moldura) {
+    margin-inline: 1rem;
+  }
+
+  .barra-filtros {
+    gap: .5rem;
+  }
+
+  .btn-filtro {
+    padding-inline: .95rem;
+    font-size: .88rem;
+  }
+
+  .destaque-vitrine {
+    margin-bottom: 2.5rem;
+    padding: 1rem;
+  }
+
+  .item-horario {
+    flex-direction: column;
+  }
+
+  .mapa-grade {
+    gap: 1.5rem;
+  }
+
+  .linha-tempo-abas {
+    gap: .5rem;
+  }
+
+  .linha-tempo-aba {
+    padding-inline: .95rem;
+    font-size: .86rem;
+  }
+
+  .linha-tempo-ano {
+    font-size: 2.6rem;
+  }
+
+  .linha-tempo-apoio {
+    padding: 1.25rem;
+  }
+
+  .cadastro-lateral,
+  .cartao-formulario {
+    padding: 1.25rem;
+  }
+
+  .grupo-checkbox {
+    gap: .7rem;
+    padding: .85rem;
+  }
+
+  .modal-curatorial {
+    width: calc(100% - 1rem);
+    max-height: calc(100dvh - 1rem);
+  }
+
+  .modal-header,
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .modal-audio-cabecalho .btn {
+    width: 100%;
+  }
+
+  .rodape {
+    padding-top: 2.75rem;
+  }
+
+  .rodape-base {
+    flex-direction: column;
+  }
+}
+
+/* Telas largas: a partir de 1280px */
+@media (min-width: 1280px) {
+  h2 {
+    font-size: 2.75rem;
+  }
+
+  .secao {
+    padding: 6rem 0;
+  }
+
+  .cabecalho-secao {
+    margin-bottom: 2.5rem;
+  }
+
+  .grid-2,
+  .grid-3 {
+    gap: 2rem;
+  }
+
+  .card {
+    padding: 1.75rem;
+  }
+
+  .card-obra {
+    padding: 0 0 1.5rem;
+  }
+
+  .card-obra>*:not(.obra-moldura) {
+    margin-inline: 1.5rem;
+  }
+
+  .destaque-vitrine {
+    gap: 3rem;
+    padding: 2rem;
+  }
+
+  .mapa-grade {
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .linha-tempo-palco {
+    gap: 5rem;
+  }
+
+  .cadastro-grade {
+    gap: 4.5rem;
+  }
+
+  .modal-curatorial {
+    width: min(820px, calc(100% - 2rem));
+  }
+
+  .rodape {
+    padding-top: 4.5rem;
+  }
+
+  .rodape-grade {
+    gap: 4rem;
+  }
+}
+
+
+/* 16. IMPRESSÃO ----------------------------------------------------------- */
 @media print {
 
   .barra-topo,
